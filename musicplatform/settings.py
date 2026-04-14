@@ -116,7 +116,5 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-INSTALLED_APPS = [
-    ...
-    'musicplatform',  #Streaming music app
-]
+INSTALLED_APPS = [...'musicplatform',  #Streaming music app 
+                  ]
