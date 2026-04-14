@@ -32,3 +32,7 @@ def home(request):
         </body>
         </html>
     """)
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'musicplatform/home.html')
