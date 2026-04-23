@@ -26,3 +26,11 @@ class ListeningHistory(models.Model):
 
     def __str__(self):
         return f"Listened: {self.song.title}"
+    
+class LogMessage(models.Model):
+    # This stores the text for your log entries
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message
