@@ -1,21 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
-<head>
-    {% load static %}
-    <title>{% block title %}Music Platform{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'musicplatform/site.css' %}">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Music Platform{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'musicplatform/site.css' %}">
+    </head>
 
-<body style="text-align: center; font-family: Garamond, sans-serif; padding: 40px;"></body>
-    <nav style="background-color: blue; padding: 10px; text-align: center;">
-        <a href="/" style="color: white; margin-right: 15px;">Home</a>
-        <a href="/about" style="color: white;">About</a>
-    </nav>    
+    <body style="text-align: center; font-family: Garamond, sans-serif; padding: 40px;">
+        <nav style="background-color: blue; padding: 10px; text-align: center; margin-bottom: 20px;">
+            <a href="/" style="color: white; margin-right: 15px; text-decoration: none;">Home</a>
+            <a href="/about" style="color: white; margin-right: 15px; text-decoration: none;">About</a>
+            
+            <a href="{% url 'home' %}" style="color: white; text-decoration: none;">Log Messages</a>
+        </nav>
+        
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
 
-    {% block content %}{% endblock %}
-
-    <footer>
-        <p>Copyright 2024 | Music Platform | IS218 | Annie Nguyen | April 9, 2026</p>
-    </footer>
-</body>
+        <footer style="margin-top: 40px;">
+            <p>Copyright 2024 | Music Platform | IS218 | Annie Nguyen | April 9, 2026</p>
+        </footer>
+    </body>
 </html>

@@ -1,5 +1,21 @@
-{% extends 'musicplatform/layout.html' %}
+{% extends "musicplatform/layout.html" %}
+
 {% block content %}
 <h1>Welcome to Music Platform</h1>
 <p>Team: Josue Ortiz, Ambrose Mcahee, Annie Nguyen, Julia Navarro, Slobodan Malinkov</p>
+
+<h2>Data Logs</h2>
+<div style="text-align: left; display: inline-block; margin-top: 20px; width: 80%;">
+    <ul class="list-group">
+    {% for log in logs %}
+        <li class="list-group-item" style="margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; list-style: none;">
+            <strong>{{ log.message }}</strong>
+            <br>
+            <small style="color: gray;">Captured on: {{ log.created_at }}</small>
+        </li>
+    {% empty %}
+        <p>Still not seeing them? Make sure you saved views.py!</p>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}
