@@ -1,0 +1,37 @@
+{% extends "musicplatform/layout.html" %}
+
+{% block title %}{{ song.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ song.title }}</h1>
+<p><strong>Artist:</strong> {{ song.artist }}</p>
+<p><strong>Album:</strong> {{ song.album }}</p>
+<p><strong>Year:</strong> {{ song.release_year }}</p>
+
+<hr style="width: 80%; margin: 30px auto;">
+
+<h2>Reviews</h2>
+<div style="width: 80%; margin: 0 auto; text-align: left;">
+    {% for rating in ratings %}
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+        <strong>{{ rating.rating }} / 5 stars</strong>
+        <p>{{ rating.comment }}</p>
+        <small style="color: gray;">{{ rating.created_at }}</small>
+    </div>
+    {% empty %}
+    <p>No reviews yet. Be the first!</p>
+    {% endfor %}
+</div>
+
+<hr style="width: 80%; margin: 30px auto;">
+
+<h2>Leave a Review</h2>
+<form method="post" style="width: 80%; margin: 0 auto; text-align: left;">
+    {% csrf_token %}
+    <label>Rating (1-5):</label><br>
+    <input type="number" name="rating" min="1" max="5" required style="margin-bottom: 10px; padding: 5px;"><br>
+    <label>Comment:</label><br>
+    <textarea name="comment" rows="4" style="width: 100%; padding: 5px; margin-bottom: 10px;"></textarea><br>
+    <button type="submit" style="background-color: hotpink; color: white; padding: 8px 20px; border: none; cursor: pointer;">Submit Review</button>
+</form>
+{% endblock %}
