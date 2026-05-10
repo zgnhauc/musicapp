@@ -1,4 +1,4 @@
-# Music Platform — IS218 Group Project
+p# Music Platform — IS218 Group Project
 
 **Team:** Josue Ortiz, Ambrose Mcahee, Annie Nguyen, Julia Navarro, Slobodan Malinkov
 

@@ -24,7 +24,12 @@ urlpatterns = [
     path('about/', views.about),
     path('songs/', views.songs, name='songs'),
     path('songs/<int:song_id>/', views.song_detail, name='song_detail'),
+<<<<<<< HEAD
     path('accounts/', include('django.contrib.auth.urls')),
+=======
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
+>>>>>>> 437357b771ee6231c3bc99b0980c70edcdbf31d7
 ]
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

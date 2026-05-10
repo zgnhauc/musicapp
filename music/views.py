@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect 
 from .models import LogMessage, Song, Rating
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages 
 
 def home(request):
     logs = LogMessage.objects.all()
@@ -23,3 +25,24 @@ def song_detail(request, song_id):
         ratings = Rating.objects.filter(song=song)
 
     return render(request, 'music/song_detail.html', {'song': song, 'ratings': ratings})
+
+## julia working on login/logout
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, ("You have been logged in!"))
+            return redirect('home')
+        else: 
+            messages.success(request, ("There was an error, please try again. "))
+            return redirect('login')   
+    else:
+        return render(request, 'musicplatform/login.html', {})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("You have been logged out. Thank you for using our app!"))
+    return redirect('home')
