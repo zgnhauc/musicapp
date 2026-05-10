@@ -13,7 +13,15 @@
             <a href="/" style="color: white; margin-right: 15px; text-decoration: none;">Home</a>
             <a href="/about/" style="color: white; margin-right: 15px; text-decoration: none;">About</a>
             <a href="/songs/" style="color: white; margin-right: 15px; text-decoration: none;">Songs</a>
-            <a href="{% url 'home' %}" style="color: white; text-decoration: none;">Log Messages</a>
+            {% if user.is_authenticated %}
+                <span style="color: white; margin-right: 15px;">Hi, {{ user.username }}</span>
+                <form method="post" action="/accounts/logout/" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: none; font-family: inherit; font-size: inherit;">Logout</button>
+                </form>
+            {% else %}
+                <a href="/accounts/login/" style="color: white; text-decoration: none;">Login</a>
+            {% endif %}
         </nav>
         
         <div class="container">
@@ -22,7 +30,7 @@
         </div>
 
         <footer style="margin-top: 40px;">
-            <p>Copyright 2024 | Music Platform | IS218 | Annie Nguyen | April 9, 2026</p>
+            <p>Copyright 2026 | Music Platform | IS218 | April 9, 2026</p>
         </footer>
     </body>
 </html>

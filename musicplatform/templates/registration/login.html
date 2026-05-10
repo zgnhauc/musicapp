@@ -1,0 +1,18 @@
+{% extends "musicplatform/layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+
+<form method="post" style="width: 300px; margin: 0 auto; text-align: left;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: hotpink; color: white; padding: 8px 20px; border: none; cursor: pointer; width: 100%;">Login</button>
+</form>
+
+{% if form.errors %}
+<p style="color: red;">Incorrect username or password.</p>
+{% endif %}
+
+{% endblock %}
