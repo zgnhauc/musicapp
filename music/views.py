@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import LogMessage, Song, Rating, ListeningHistory
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 def home(request):
     logs = LogMessage.objects.all()
@@ -15,7 +17,7 @@ def songs(request):
 def song_detail(request, song_id):
     song = get_object_or_404(Song, id=song_id)
     ratings = Rating.objects.filter(song=song)
-
+    
     if request.method == 'POST':
         if 'play' in request.POST:
             ListeningHistory.objects.create(song=song)
@@ -30,3 +32,7 @@ def song_detail(request, song_id):
 def history(request):
     entries = ListeningHistory.objects.order_by('-listened_at')
     return render(request, 'music/history.html', {'entries': entries})
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
