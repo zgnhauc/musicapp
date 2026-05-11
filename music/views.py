@@ -17,7 +17,7 @@ def songs(request):
 def song_detail(request, song_id):
     song = get_object_or_404(Song, id=song_id)
     ratings = Rating.objects.filter(song=song)
-
+    
     if request.method == 'POST':
         if 'play' in request.POST:
             ListeningHistory.objects.create(song=song)
