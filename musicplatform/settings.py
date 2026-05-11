@@ -119,5 +119,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'musicplatform', 'music',
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
     
 
