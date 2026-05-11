@@ -8,6 +8,25 @@
 <p><strong>Album:</strong> {{ song.album }}</p>
 <p><strong>Year:</strong> {{ song.release_year }}</p>
 
+{% if song.audio_file %}
+<div style="margin: 20px auto; width: 80%;">
+    <h2>Play</h2>
+    <audio controls style="width: 100%;">
+        <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <form method="post" style="margin-top: 10px;">
+        {% csrf_token %}
+        <button type="submit" name="play" value="1"
+            style="background-color: hotpink; color: white; padding: 8px 20px; border: none; cursor: pointer;">
+            Log Play to History
+        </button>
+    </form>
+</div>
+{% else %}
+<p style="color: gray;">No audio file uploaded for this song yet.</p>
+{% endif %}
+
 <hr style="width: 80%; margin: 30px auto;">
 
 <h2>Reviews</h2>
@@ -29,9 +48,14 @@
 <form method="post" style="width: 80%; margin: 0 auto; text-align: left;">
     {% csrf_token %}
     <label>Rating (1-5):</label><br>
-    <input type="number" name="rating" min="1" max="5" required style="margin-bottom: 10px; padding: 5px;"><br>
+    <input type="number" name="rating" min="1" max="5" required
+        style="margin-bottom: 10px; padding: 5px;"><br>
     <label>Comment:</label><br>
-    <textarea name="comment" rows="4" style="width: 100%; padding: 5px; margin-bottom: 10px;"></textarea><br>
-    <button type="submit" style="background-color: hotpink; color: white; padding: 8px 20px; border: none; cursor: pointer;">Submit Review</button>
+    <textarea name="comment" rows="4"
+        style="width: 100%; padding: 5px; margin-bottom: 10px;"></textarea><br>
+    <button type="submit"
+        style="background-color: hotpink; color: white; padding: 8px 20px; border: none; cursor: pointer;">
+        Submit Review
+    </button>
 </form>
 {% endblock %}

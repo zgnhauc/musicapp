@@ -1,0 +1,31 @@
+{% extends "musicplatform/layout.html" %}
+
+{% block title %}Listening History{% endblock %}
+
+{% block content %}
+<h1>Listening History</h1>
+<table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
+    <thead>
+        <tr style="background-color: hotpink; color: white;">
+            <th style="padding: 10px;">Song</th>
+            <th style="padding: 10px;">Artist</th>
+            <th style="padding: 10px;">Played At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">
+                <a href="/songs/{{ entry.song.id }}/">{{ entry.song.title }}</a>
+            </td>
+            <td style="padding: 10px;">{{ entry.song.artist }}</td>
+            <td style="padding: 10px;">{{ entry.listened_at }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" style="padding: 20px;">No history yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
