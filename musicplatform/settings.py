@@ -1,3 +1,4 @@
+#Ambrose Mcahee
 """
 Django settings for musicplatform project.
 
