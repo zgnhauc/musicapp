@@ -7,48 +7,33 @@
         <title>{% block title %}Music Platform{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'musicplatform/site.css' %}">
     </head>
-
     <body style="text-align: center; font-family: Garamond, sans-serif; padding: 40px;">
         <nav style="background-color: hotpink; padding: 10px; text-align: center; margin-bottom: 20px;">
             <a href="/" style="color: white; margin-right: 15px; text-decoration: none;">Home</a>
             <a href="/about/" style="color: white; margin-right: 15px; text-decoration: none;">About</a>
             <a href="/songs/" style="color: white; margin-right: 15px; text-decoration: none;">Songs</a>
-<<<<<<< HEAD
+            <a href="/history/" style="color: white; margin-right: 15px; text-decoration: none;">History</a>
             {% if user.is_authenticated %}
                 <span style="color: white; margin-right: 15px;">Hi, {{ user.username }}</span>
                 <form method="post" action="/accounts/logout/" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: none; font-family: inherit; font-size: inherit;">Logout</button>
+                    <button type="submit" style="background: none; border: none; color: white; cursor: pointer; font-family: inherit; font-size: inherit;">Logout</button>
                 </form>
             {% else %}
                 <a href="/accounts/login/" style="color: white; text-decoration: none;">Login</a>
-=======
-            <a href="{% url 'home' %}" style="color: white; text-decoration: none; margin-right: 15px; ">Log Messages</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" style="color: white; text-decoration: none; margin-right: 15px; ">Log Out</a>
-            {% else %}
-                <a href="{% url 'login' %}" style="color: white; text-decoration: none; margin-right: 15px; ">Log In</a>
->>>>>>> 437357b771ee6231c3bc99b0980c70edcdbf31d7
             {% endif %}
         </nav>
         {% if messages %}
-            {% for message in messages%}
-  
-               <h2 style = "font-weight: bold; font-style: italic;">{{message}}</h2> 
-                
+            {% for message in messages %}
+                <h2 style="font-weight: bold; font-style: italic;">{{ message }}</h2>
             {% endfor %}
         {% endif %}
         <div class="container">
             {% block content %}
             {% endblock %}
         </div>
-
         <footer style="margin-top: 40px;">
-<<<<<<< HEAD
-            <p>Copyright 2026 | Music Platform | IS218 | April 9, 2026</p>
-=======
             <p>Copyright 2026 | Music Platform | IS218 | Team 4 | May 11, 2026</p>
->>>>>>> 437357b771ee6231c3bc99b0980c70edcdbf31d7
         </footer>
     </body>
 </html>
