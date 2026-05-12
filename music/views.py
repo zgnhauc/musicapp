@@ -1,3 +1,4 @@
+#Ambrose Mcahee
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import LogMessage, Song, Rating, ListeningHistory
 from django.contrib.auth import authenticate, login, logout
