@@ -17,7 +17,7 @@ def songs(request):
 def song_detail(request, song_id):
     song = get_object_or_404(Song, id=song_id)
     ratings = Rating.objects.filter(song=song)
-    
+
     if request.method == 'POST':
         if 'play' in request.POST:
             ListeningHistory.objects.create(song=song)
@@ -36,3 +36,19 @@ def history(request):
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, ("You have been logged in!"))
+            return redirect('home')
+        else:
+            messages.success(request, ("There was an error, please try again."))
+            return redirect('login')
+    else:
+        return render(request, 'musicplatform/login.html', {})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("You have been logged out. Thank you for using our app!"))
+    return redirect('home')
